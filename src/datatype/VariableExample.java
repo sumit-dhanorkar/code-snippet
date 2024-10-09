@@ -2,7 +2,7 @@ package datatype;
 
 public class VariableExample {
 
-    // Class variable (static field)
+    // Car variable (static field)
     static int classVar = 30;
 
     // Instance variable (non-static field)
@@ -18,14 +18,14 @@ public class VariableExample {
         System.out.println("Local Variable: " + localVar);
 
         // Accessing class variable
-        System.out.println("Class Variable: " + classVar);
+        System.out.println("Car Variable: " + classVar);
 
         // Creating an instance of the class to access instance variables
         VariableExample example = new VariableExample();
         System.out.println("Instance Variable: " + example.instanceVar);
 
         // Accessing constants
-        System.out.println("Class Constant: " + CLASS_CONSTANT);
+        System.out.println("Car Constant: " + CLASS_CONSTANT);
         System.out.println("Instance Constant: " + example.instanceConstant);
 
         // Passing a parameter to a method
