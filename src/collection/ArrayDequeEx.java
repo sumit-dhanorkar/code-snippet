@@ -9,7 +9,8 @@ public class ArrayDequeEx {
         arrayDequeAsQueue.addLast(1);  // Enqueue element at the rear
         arrayDequeAsQueue.addLast(5);
         arrayDequeAsQueue.addLast(10);
-        
+
+
         // Printing elements (FIFO order)
         arrayDequeAsQueue.forEach(item -> System.out.print(item + " "));  // Output: 1 5 10 
         System.out.println();
