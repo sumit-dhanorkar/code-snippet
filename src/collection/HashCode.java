@@ -11,8 +11,12 @@ public class HashCode {
         int hash1 = hashCode(1, "sumit");
         System.out.println(hash1);
 
+        int a = hash % 3;
+        System.out.println(a);
+        System.out.println((3-1) & hash);
 
-//        System.out.println(2<<2);
+
+//        System.out.println(1<<30);
     }
     public static int hashCode(Object key, Object value) {
         return Objects.hashCode(key) ^ Objects.hashCode(value);
