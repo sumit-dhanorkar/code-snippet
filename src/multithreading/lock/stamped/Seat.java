@@ -1,6 +1,7 @@
 package multithreading.lock.stamped;
 
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.StampedLock;
 
 // Seat class representing a concert ticket with version control
 class Seat {
@@ -8,6 +9,7 @@ class Seat {
     private SeatStatus status;
     private final AtomicInteger version;
     private String bookedBy;
+    private StampedLock lock;
 
     // Enum to represent seat status
     public enum SeatStatus {
@@ -19,10 +21,13 @@ class Seat {
         this.status = SeatStatus.AVAILABLE;
         this.version = new AtomicInteger(1);
         this.bookedBy = null;
+        this.lock=new StampedLock();
     }
 
     // Synchronized method to attempt booking
-    public synchronized boolean book(String userName) {
+    public  boolean book(String userName) {
+        long stamp = lock.readLock();
+
         // Check if seat is available
         if (status != SeatStatus.AVAILABLE) {
             System.out.println(userName + " failed: Seat " + seatNumber + " is not available.");
@@ -34,11 +39,13 @@ class Seat {
         
         try {
             // Simulate booking process with some delay
-            Thread.sleep(100);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             status = SeatStatus.AVAILABLE;
             return false;
+        }finally {
+            lock.unlockRead(stamp);
         }
 
         // Final booking confirmation
